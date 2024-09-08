@@ -361,3 +361,26 @@ void lcd_draw_text(int16_t x, int16_t y, char *text, uint16_t color, uint16_t bg
         text++;
     }
 }
+
+// Set the rotation
+void lcd_set_rotation(uint8_t rotation) {
+    lcd_write_command(0x36);  // MADCTL (Memory Access Control)
+    
+    switch (rotation) {
+        case ROTATION_PORTRAIT:
+            lcd_write_data(0x00);  // Normal portrait mode
+            break;
+        case ROTATION_LANDSCAPE:
+            lcd_write_data(0x60);  // Rotate 90 degrees (landscape)
+            break;
+        case ROTATION_PORTRAIT_FLIP:
+            lcd_write_data(0xC0);  // Rotate 180 degrees (portrait flip)
+            break;
+        case ROTATION_LANDSCAPE_FLIP:
+            lcd_write_data(0xA0);  // Rotate 270 degrees (landscape flip)
+            break;
+        default:
+            lcd_write_data(0x00);  // Default to normal portrait mode
+            break;
+    }
+}

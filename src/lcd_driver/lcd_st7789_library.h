@@ -10,6 +10,12 @@
 #define WIDTH 320
 #define HEIGHT 240
 
+// Define rotation modes
+#define ROTATION_PORTRAIT 0
+#define ROTATION_LANDSCAPE 1
+#define ROTATION_PORTRAIT_FLIP 2
+#define ROTATION_LANDSCAPE_FLIP 3
+
 // Function to initialize the LCD
 // This should be called before using any other functions
 void lcd_init();
@@ -73,5 +79,13 @@ void lcd_draw_char(int16_t x, int16_t y, char c, uint16_t color, uint16_t bg, ui
 // bg: 16-bit background color
 // size: size multiplier for the text
 void lcd_draw_text(int16_t x, int16_t y, char *text, uint16_t color, uint16_t bg, uint8_t size);
+
+// Function to set the display rotation
+// rotation: Rotation mode (0-3)
+//   0: Portrait (0 degrees)
+//   1: Landscape (90 degrees)
+//   2: Portrait flipped (180 degrees)
+//   3: Landscape flipped (270 degrees)
+void lcd_set_rotation(uint8_t rotation);
 
 #endif // LCD_ST7789_H
